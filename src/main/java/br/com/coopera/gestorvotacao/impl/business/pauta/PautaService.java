@@ -1,11 +1,8 @@
 package br.com.coopera.gestorvotacao.impl.business.pauta;
 
-import br.com.coopera.gestorvotacao.impl.api.v1.pauta.PautaDTO;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PautaService {

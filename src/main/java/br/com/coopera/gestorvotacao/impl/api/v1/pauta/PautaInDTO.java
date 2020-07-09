@@ -1,17 +1,13 @@
 package br.com.coopera.gestorvotacao.impl.api.v1.pauta;
 
-public class PautaDTO {
-    private Integer id;
+import javax.validation.constraints.NotNull;
+
+public class PautaInDTO {
+    @NotNull(message = "O Nome da pauta precisa ser informado")
     private String nome;
+
+    @NotNull(message = "Uma Descrição da pauta deve ser informada")
     private String descricao;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

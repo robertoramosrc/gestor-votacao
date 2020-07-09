@@ -1,35 +1,36 @@
 package br.com.coopera.gestorvotacao.infra.repository.pauta;
 
 import br.com.coopera.gestorvotacao.impl.business.pauta.Pauta;
-import br.com.coopera.gestorvotacao.infra.repository.utils.DateUtils;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "pauta")
+@Table(name = "TB_PAUTA")
 public class PautaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idPauta")
+    @Column(name = "ID_PAUTA")
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "NM_PAUTA")
     private String nome;
 
-    @Column(name = "descricao")
+    @Column(name = "DES_PAUTA")
     private String descricao;
 
-    @Column(name = "dataInclusao")
-    private Date dataInclusao;
+    @CreationTimestamp
+    @Column(name = "DATA_INCLUSAO", columnDefinition = "TIMESTAMP")
+    private LocalDateTime dataInclusao;
 
     public static Pauta toBO(PautaEntity entity){
         Pauta pauta = new Pauta();
         pauta.setId(entity.getId());
         pauta.setNome(entity.getNome());
         pauta.setDescricao(entity.getDescricao());
-        pauta.setDataInclusao(DateUtils.toLocalDate(entity.getDataInclusao()));
+        pauta.setDataInclusao(entity.getDataInclusao());
 
         return pauta;
     }
@@ -39,7 +40,7 @@ public class PautaEntity {
         pautaEntity.setId(pauta.getId());
         pautaEntity.setNome(pauta.getNome());
         pautaEntity.setDescricao(pauta.getDescricao());
-        pautaEntity.setDataInclusao(DateUtils.toSQLDate(pauta.getDataInclusao()));
+        pautaEntity.setDataInclusao(pauta.getDataInclusao());
 
         return pautaEntity;
     }
@@ -68,11 +69,11 @@ public class PautaEntity {
         this.descricao = descricao;
     }
 
-    public Date getDataInclusao() {
+    public LocalDateTime getDataInclusao() {
         return dataInclusao;
     }
 
-    public void setDataInclusao(Date dataInclusao) {
+    public void setDataInclusao(LocalDateTime dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
 }

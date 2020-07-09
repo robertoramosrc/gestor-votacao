@@ -1,12 +1,15 @@
-package br.com.coopera.gestorvotacao.impl.business.pauta;
+package br.com.coopera.gestorvotacao.impl.api.v1.pauta;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
-public class Pauta {
+public class PautaOutDTO {
     private Long id;
     private String nome;
     private String descricao;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataInclusao;
 
     public Long getId() {
