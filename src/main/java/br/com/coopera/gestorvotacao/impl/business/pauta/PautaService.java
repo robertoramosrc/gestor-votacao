@@ -1,5 +1,6 @@
 package br.com.coopera.gestorvotacao.impl.business.pauta;
 
+import br.com.coopera.gestorvotacao.impl.exceptions.RegistroNaoExisteException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,11 @@ public class PautaService {
         return pautaRepository.listar();
     }
 
-    public Pauta listarPorId(Long id) {
-        return pautaRepository.listarPorId(id);
+    public Pauta buscarPorId(Long id) {
+        return pautaRepository.buscarPorId(id)
+                .orElseThrow(() -> new RegistroNaoExisteException("Pauta não encontrada"));
+    }
+    public boolean isPautaCadastrada(Long id){
+        return pautaRepository.buscarPorId(id).isPresent();
     }
 }

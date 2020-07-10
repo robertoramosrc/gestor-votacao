@@ -62,7 +62,7 @@ public class PautaRest {
             @PathVariable Long id) {
 
         return ResponseEntity.ok(
-                mapper.map(pautaService.listarPorId(id), PautaOutDTO.class));
+                mapper.map(pautaService.buscarPorId(id), PautaOutDTO.class));
 
     }
 }

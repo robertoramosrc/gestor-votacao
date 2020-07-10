@@ -6,6 +6,7 @@ import br.com.coopera.gestorvotacao.infra.repository.pauta.PautaEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -27,8 +28,7 @@ public class PautaRepository {
                 .collect(Collectors.toList());
     }
 
-    public Pauta listarPorId(Long id) {
-        return PautaEntity.toBO(pautaDao.findById(id)
-                .orElseThrow(() -> new RegistroNaoExisteException("Pauta não encontrada")));
+    public Optional<Pauta> buscarPorId(Long id) {
+        return pautaDao.findById(id).map(PautaEntity::toBO);
     }
 }
