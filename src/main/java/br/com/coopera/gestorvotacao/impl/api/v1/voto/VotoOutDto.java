@@ -1,11 +1,14 @@
 package br.com.coopera.gestorvotacao.impl.api.v1.voto;
 
 import br.com.coopera.gestorvotacao.impl.business.voto.ValorVotoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class VotoOutDto {
     private Long id;
     private String cpf;
     private ValorVotoEnum valor;
+
+    @JsonIgnore
     private Long pautataId;
 
     public Long getId() {
