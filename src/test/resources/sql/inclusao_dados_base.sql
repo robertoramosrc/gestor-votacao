@@ -13,6 +13,11 @@ insert into tb_pauta(
 Values(
 	3, 'Pauta 3', 'Terceira Pauta', CURRENT_TIMESTAMP());
 
+insert into tb_pauta(
+	id_pauta, nm_pauta,	des_pauta,	data_inclusao)
+Values(
+	4, 'Pauta 4', 'Quarta Pauta', CURRENT_TIMESTAMP());
+
 insert into tb_sessao(
 id_sessao, id_pauta, des_situacao, des_duracao, data_abertura, data_encerramento)
 values(
@@ -22,3 +27,8 @@ insert into tb_sessao(
 id_sessao, id_pauta, des_situacao, des_duracao, data_abertura, data_encerramento)
 values(
 11, 3, 'E', 'UM_DIA', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+
+insert into tb_sessao(
+id_sessao, id_pauta, des_situacao, des_duracao, data_abertura, data_encerramento)
+values(
+12, 4, 'A', 'UMA_HORA', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());

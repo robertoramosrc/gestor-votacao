@@ -1,12 +1,11 @@
 package br.com.coopera.gestorvotacao.impl.api.v1.sessao;
 
-import br.com.coopera.gestorvotacao.impl.business.pauta.Pauta;
 import br.com.coopera.gestorvotacao.impl.business.sessao.DuracaoSessaoEnum;
 import br.com.coopera.gestorvotacao.impl.business.sessao.SituacaoSessaoEnum;
 
 public class SessaoOutDTO {
     private Long id;
-    private Pauta pauta;
+    private Long pautaId;
     private DuracaoSessaoEnum duracao;
     private SituacaoSessaoEnum situacao;
 
@@ -18,12 +17,12 @@ public class SessaoOutDTO {
         this.id = id;
     }
 
-    public Pauta getPauta() {
-        return pauta;
+    public Long getPautaId() {
+        return pautaId;
     }
 
-    public void setPauta(Pauta pauta) {
-        this.pauta = pauta;
+    public void setPautaId(Long pautaId) {
+        this.pautaId = pautaId;
     }
 
     public DuracaoSessaoEnum getDuracao() {

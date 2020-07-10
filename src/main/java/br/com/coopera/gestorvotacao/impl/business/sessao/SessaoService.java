@@ -5,6 +5,7 @@ import br.com.coopera.gestorvotacao.impl.exceptions.NegocioException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class SessaoService {
@@ -40,7 +41,7 @@ public class SessaoService {
         return sessaoRepository.salvar(sessao);
     }
 
-    private Sessao buscarSessaoPorPauta(Long pautaId) {
+    public Sessao buscarSessaoPorPauta(Long pautaId) {
         return sessaoRepository.buscarPorPauta(pautaId)
                 .orElseThrow(() -> new NegocioException("Não foi encontrada uma sessão aberta para a pauta."));
     }
@@ -60,4 +61,9 @@ public class SessaoService {
             throw new NegocioException("Não é possível encerrar uma sessão de votação que ão esteja aberta.");
         }
     }
+
+    public List<Sessao> listarSessoes(){
+        return sessaoRepository.listarSessoes();
+    }
+
 }

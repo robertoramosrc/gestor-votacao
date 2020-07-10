@@ -1,6 +1,7 @@
 package br.com.coopera.gestorvotacao.infra.repository.pauta;
 
 import br.com.coopera.gestorvotacao.impl.business.pauta.Pauta;
+import br.com.coopera.gestorvotacao.infra.repository.sessao.SessaoEntity;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -76,4 +77,5 @@ public class PautaEntity {
     public void setDataInclusao(LocalDateTime dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
+
 }

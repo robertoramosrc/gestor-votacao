@@ -6,7 +6,9 @@ import br.com.coopera.gestorvotacao.infra.repository.sessao.SessaoDao;
 import br.com.coopera.gestorvotacao.infra.repository.sessao.SessaoEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class SessaoRepository {
@@ -31,5 +33,12 @@ public class SessaoRepository {
     public Optional<Sessao> buscarPorPauta(Long pautaId) {
         return sessaoDao.findByPautaId(pautaId)
                 .map(SessaoEntity::toBO);
+    }
+
+    public List<Sessao> listarSessoes() {
+        return sessaoDao.findAll()
+                .stream()
+                .map(SessaoEntity::toBO)
+                .collect(Collectors.toList());
     }
 }

@@ -11,7 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/sessoes")
@@ -35,15 +36,28 @@ public class SessaoRest {
     }
 
     @GetMapping
-    @ApiOperation("Consultar a seção de votação de uma Pauta")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pauta", required = true, dataType = "Long", paramType = "path",
-                    value = "Número da Pauta")})
-    public ResponseEntity<SessaoOutDTO> consultarSessaoDeVotacao(@Valid @RequestBody SessaoInDto sessaoInDto) {
+    @ApiOperation("Consultar as seções de votações")
+    public ResponseEntity<List<SessaoOutDTO>> consultarSessaoDeVotacao() {
 
-        Sessao sessao = this.sessaoService.abrirParaIniciarVotacao(mapper.map(sessaoInDto, Sessao.class));
+        List<SessaoOutDTO> dtos = this.sessaoService.listarSessoes()
+                .stream()
+                .map(sessao -> mapper.map(sessao, SessaoOutDTO.class))
+                .collect(Collectors.toList());
 
-        return ResponseEntity.status(HttpStatus.OK).body(mapper.map(sessao, SessaoOutDTO.class));
+        return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
+    @GetMapping("/pautas/{pautaId}/dados")
+    @ApiOperation("Consultar a seção de votação de uma Pauta")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pautaId", required = true, dataType = "String",
+                    paramType = "path", value = "Número da Pauta")})
+
+    public ResponseEntity<SessaoOutDTO> consultarSessaoDeVotacaoPorPauta(
+            @PathVariable Long pautaId) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(mapper.map(this.sessaoService.buscarSessaoPorPauta(pautaId),
+                        SessaoOutDTO.class));
+    }
 }
