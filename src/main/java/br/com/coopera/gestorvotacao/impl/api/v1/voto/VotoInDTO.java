@@ -1,9 +1,11 @@
 package br.com.coopera.gestorvotacao.impl.api.v1.voto;
 
+import br.com.coopera.gestorvotacao.impl.business.voto.ValorVotoEnum;
+
 public class VotoInDTO {
     private String CPF;
-    private String valor;
-    private Long sessaoId;
+    private ValorVotoEnum valor;
+    private Long pautaId;
 
     public String getCPF() {
         return CPF;
@@ -13,20 +15,19 @@ public class VotoInDTO {
         this.CPF = CPF;
     }
 
-    public String getValor() {
+    public ValorVotoEnum getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(ValorVotoEnum valor) {
         this.valor = valor;
     }
 
-    public Long getSessaoId() {
-        return sessaoId;
+    public Long getPautaId() {
+        return pautaId;
     }
 
-    public void setSessaoId(Long sessaoId) {
-        this.sessaoId = sessaoId;
+    public void setPautaId(Long pautaId) {
+        this.pautaId = pautaId;
     }
-
 }

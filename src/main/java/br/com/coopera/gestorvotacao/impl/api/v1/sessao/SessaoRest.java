@@ -50,9 +50,8 @@ public class SessaoRest {
     @GetMapping("/pautas/{pautaId}/dados")
     @ApiOperation("Consultar a seção de votação de uma Pauta")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pautaId", required = true, dataType = "String",
+            @ApiImplicitParam(name = "pautaId", required = true, dataType = "Long",
                     paramType = "path", value = "Número da Pauta")})
-
     public ResponseEntity<SessaoOutDTO> consultarSessaoDeVotacaoPorPauta(
             @PathVariable Long pautaId) {
 

@@ -3,8 +3,9 @@ package br.com.coopera.gestorvotacao.impl.business.voto;
 public class Voto {
     private Long id;
     private String cpf;
-    private String valor;
+    private ValorVotoEnum valor;
     private Long sessaoId;
+    private Long pautaId;
 
     public Long getId() {
         return id;
@@ -22,11 +23,11 @@ public class Voto {
         this.cpf = cpf;
     }
 
-    public String getValor() {
+    public ValorVotoEnum getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(ValorVotoEnum valor) {
         this.valor = valor;
     }
 
@@ -36,5 +37,13 @@ public class Voto {
 
     public void setSessaoId(Long sessaoId) {
         this.sessaoId = sessaoId;
+    }
+
+    public Long getPautaId() {
+        return pautaId;
+    }
+
+    public void setPautaId(Long pautaId) {
+        this.pautaId = pautaId;
     }
 }

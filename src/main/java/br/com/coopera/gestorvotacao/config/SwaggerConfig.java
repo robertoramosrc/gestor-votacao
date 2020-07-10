@@ -1,4 +1,4 @@
-package br.com.coopera.gestorvotacao.config.swagger;
+package br.com.coopera.gestorvotacao.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

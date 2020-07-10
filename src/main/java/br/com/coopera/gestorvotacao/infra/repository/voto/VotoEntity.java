@@ -1,5 +1,6 @@
 package br.com.coopera.gestorvotacao.infra.repository.voto;
 
+import br.com.coopera.gestorvotacao.impl.business.voto.ValorVotoEnum;
 import br.com.coopera.gestorvotacao.impl.business.voto.Voto;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class VotoEntity {
         Voto voto = new Voto();
         voto.setId(entity.getId());
         voto.setCpf(entity.getCpf());
-        voto.setValor(entity.getValor());
+        voto.setValor(ValorVotoEnum.getByValor(entity.getValor()));
         voto.setSessaoId(entity.getSessaoId());
 
         return voto;
@@ -35,7 +36,7 @@ public class VotoEntity {
         VotoEntity entity = new VotoEntity();
         entity.setId(bo.getId());
         entity.setCpf(bo.getCpf());
-        entity.setValor(bo.getValor());
+        entity.setValor(bo.getValor().getValor());
         entity.setSessaoId(bo.getSessaoId());
 
         return entity;

@@ -43,7 +43,7 @@ public class SessaoService {
 
     public Sessao buscarSessaoPorPauta(Long pautaId) {
         return sessaoRepository.buscarPorPauta(pautaId)
-                .orElseThrow(() -> new NegocioException("Não foi encontrada uma sessão aberta para a pauta."));
+                .orElseThrow(() -> new NegocioException("Não foi encontrada uma sessão de votação para a pauta."));
     }
 
     private void validarSessaoParaAberturaDeVotacao(Sessao sessao){

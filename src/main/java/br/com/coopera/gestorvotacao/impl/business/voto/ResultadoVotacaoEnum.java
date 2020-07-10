@@ -1,10 +1,10 @@
 package br.com.coopera.gestorvotacao.impl.business.voto;
 
-public enum ResultadoFinalVotacaoEnum {
+public enum ResultadoVotacaoEnum {
     PAUTA_APROVADA,
     PAUTA_REPROVADA;
 
-    public static ResultadoFinalVotacaoEnum convert(Enum<?> e) {
+    public static ResultadoVotacaoEnum convert(Enum<?> e) {
         return null == e ? null : valueOf(e.name());
     }
 }

@@ -1,15 +1,16 @@
-package br.com.coopera.gestorvotacao.impl.business.voto;
+package br.com.coopera.gestorvotacao.impl.api.v1.voto;
 
 import br.com.coopera.gestorvotacao.impl.business.sessao.SituacaoSessaoEnum;
+import br.com.coopera.gestorvotacao.impl.business.voto.ResultadoVotacaoEnum;
+import br.com.coopera.gestorvotacao.impl.business.voto.Voto;
 
 import java.util.List;
 
-public class ResultadoVotacao {
+public class ResultadoVotacaoDTO {
     private String pauta;
     private Long totalAFavor;
     private Long totalContra;
     private Long totalAnulado;
-    private List<Voto> votos;
     private ResultadoVotacaoEnum resultado;
     private SituacaoSessaoEnum situacaoSessao;
 
@@ -43,14 +44,6 @@ public class ResultadoVotacao {
 
     public void setTotalAnulado(Long totalAnulado) {
         this.totalAnulado = totalAnulado;
-    }
-
-    public List<Voto> getVotos() {
-        return votos;
-    }
-
-    public void setVotos(List<Voto> votos) {
-        this.votos = votos;
     }
 
     public ResultadoVotacaoEnum getResultado() {

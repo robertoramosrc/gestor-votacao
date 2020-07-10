@@ -1,7 +1,7 @@
 package br.com.coopera.gestorvotacao.infra.client;
 
-import br.com.coopera.gestorvotacao.impl.exceptions.NegocioException;
-import br.com.coopera.gestorvotacao.impl.exceptions.RegistroNaoExisteException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class SituacaoCPFAssociado {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SituacaoCPFAssociado.class);
 
     private final RestTemplate restTemplate;
     private final String apisCPFUrl;
@@ -22,21 +23,31 @@ public class SituacaoCPFAssociado {
 
     public boolean isCPFHabilitadoParaVotacao(String cpf) {
 
+        try {
+            LOGGER.debug("[VOTACAO] -> CONSULTA CPF.");
+
+            return validarCPFHabilitadoParaVotacao(cpf);
+
+        } catch (Exception e) {
+            LOGGER.error("[VOTACAO] -> ERRO CONSULTA CPF: ", e);
+        }
+
+        return false;
+    }
+
+    public Boolean validarCPFHabilitadoParaVotacao(String cpf) {
         ResponseEntity<SituacaoCPFDto> response =
                 restTemplate.getForEntity(
                         apisCPFUrl,
-                        SituacaoCPFDto.class, cpf);
+                        SituacaoCPFDto.class, cpf.trim());
 
         if (response.getStatusCode() == HttpStatus.OK) {
             SituacaoCPFDto situacaoCPF = response.getBody();
-            if(situacaoCPF != null){
+            if (situacaoCPF != null) {
                 return situacaoCPF.isHabilitado();
             }
-
-        } else if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
-            throw new NegocioException("CPF inválido");
         }
 
-        throw new IllegalArgumentException("Erro ao acessar o serviço de validação de CPFs");
+        return false;
     }
 }

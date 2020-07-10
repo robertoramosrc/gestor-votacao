@@ -1,6 +1,6 @@
 package br.com.coopera.gestorvotacao.impl.business.voto;
 
-import br.com.coopera.gestorvotacao.infra.repository.sessao.SessaoEntity;
+import br.com.coopera.gestorvotacao.impl.business.sessao.Sessao;
 import br.com.coopera.gestorvotacao.infra.repository.voto.VotoDao;
 import br.com.coopera.gestorvotacao.infra.repository.voto.VotoEntity;
 import org.springframework.stereotype.Repository;
@@ -27,8 +27,8 @@ public class VotoRepository {
                 .map(VotoEntity::toBO);
     }
 
-    public List<Voto> listarVotosDeUmaSessao(Long sessaoId){
-        return votoDao.findBySessaoId(sessaoId)
+    public List<Voto> listarVotosDeUmaSessao(Sessao sessao){
+        return votoDao.findBySessaoId(sessao.getId())
                 .stream()
                 .map(VotoEntity::toBO)
                 .collect(Collectors.toList());

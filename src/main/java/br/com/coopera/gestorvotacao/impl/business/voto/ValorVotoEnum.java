@@ -4,7 +4,8 @@ import java.util.stream.Stream;
 
 public enum ValorVotoEnum {
     SIM("S"),
-    NAO("N");
+    NAO("N"),
+    NULO("X");
 
     private final String valor;
 
