@@ -1,14 +1,10 @@
 package br.com.coopera.gestorvotacao.rest;
 
-import br.com.coopera.gestorvotacao.impl.business.pauta.PautaService;
-import br.com.coopera.gestorvotacao.impl.business.sessao.SessaoService;
-import br.com.coopera.gestorvotacao.impl.business.voto.VotoRepository;
-import br.com.coopera.gestorvotacao.infra.client.SituacaoCPFAssociado;
-import org.junit.jupiter.api.BeforeEach;
+import br.com.coopera.gestorvotacao.infra.client.SituacaoCPFAssociadoClient;
+import br.com.coopera.gestorvotacao.infra.client.SituacaoCPFDto;
+import br.com.coopera.gestorvotacao.infra.client.SituacaoCPFParaVotacaoEnum;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +19,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
 import static br.com.coopera.gestorvotacao.utils.TestUtil.json;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -46,12 +41,15 @@ public class VotoE2ETest {
     private MockMvc mockMvc;
 
     @MockBean
-    private SituacaoCPFAssociado situacaoCPFAssociado;
+    private SituacaoCPFAssociadoClient situacaoCPFAssociadoClient;
 
     @Test
     public void deveRegistrarVotoComSucesso() throws Exception {
+        SituacaoCPFDto situacaoCPFDto = new SituacaoCPFDto();
+        situacaoCPFDto.setStatus(SituacaoCPFParaVotacaoEnum.ABLE_TO_VOTE);
 
-        when(situacaoCPFAssociado.isCPFHabilitadoParaVotacao(anyString())).thenReturn(true);
+        when(situacaoCPFAssociadoClient.validarSituacaoCpf(anyString())).
+                thenReturn(situacaoCPFDto);
 
         mockMvc
                 .perform(MockMvcRequestBuilders.post("/votos")

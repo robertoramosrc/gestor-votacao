@@ -20,4 +20,4 @@ server:
   port: 9095
 
 apis:
-  CPFUrl: https://user-info.herokuapp.com/users/
+  CPFUrl: https://user-info.herokuapp.com

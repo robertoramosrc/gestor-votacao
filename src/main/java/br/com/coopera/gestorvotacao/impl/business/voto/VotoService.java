@@ -6,7 +6,6 @@ import br.com.coopera.gestorvotacao.impl.business.sessao.Sessao;
 import br.com.coopera.gestorvotacao.impl.business.sessao.SessaoService;
 import br.com.coopera.gestorvotacao.impl.business.sessao.SituacaoSessaoEnum;
 import br.com.coopera.gestorvotacao.impl.exceptions.NegocioException;
-import br.com.coopera.gestorvotacao.infra.client.SituacaoCPFAssociado;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +14,11 @@ import java.util.List;
 public class VotoService {
 
     private final VotoRepository votoRepository;
-    private final SituacaoCPFAssociado situacaoCPFAssociado;
     private final SessaoService sessaoService;
     private final PautaService pautaService;
 
-    public VotoService(VotoRepository votoRepository, SituacaoCPFAssociado situacaoCPFAssociado, SessaoService sessaoService, PautaService pautaService) {
+    public VotoService(VotoRepository votoRepository, SessaoService sessaoService, PautaService pautaService) {
         this.votoRepository = votoRepository;
-        this.situacaoCPFAssociado = situacaoCPFAssociado;
         this.sessaoService = sessaoService;
         this.pautaService = pautaService;
     }
@@ -48,9 +45,10 @@ public class VotoService {
             throw new NegocioException("CPF não informado na votação");
         }
 
-        /*if(!situacaoCPFAssociado.isCPFHabilitadoParaVotacao(voto.getCpf())){
+
+        if(!votoRepository.isCpfAssociadoHabilitadoParaVotacao(voto.getCpf())){
             throw new NegocioException("Não habilitado para votar. CPF: ".concat(voto.getCpf()));
-        }*/
+        }
     }
 
     private void validarVotoNaoDuplicado(Voto voto) {

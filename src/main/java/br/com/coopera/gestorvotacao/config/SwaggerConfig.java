@@ -26,7 +26,7 @@ public class SwaggerConfig {
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
                 .title("Coopera - Gestor de Votação")
-                .description("\"Sistema de Gerenciamento Votações em Assembléias\"")
+                .description("Sistema de Gerenciamento Votações em Assembléias")
                 .version("1.0.0")
                 .build();
     }
