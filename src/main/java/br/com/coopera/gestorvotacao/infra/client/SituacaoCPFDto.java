@@ -12,6 +12,6 @@ public class SituacaoCPFDto {
     }
 
     public boolean isHabilitado(){
-        return status.equals(SituacaoCPFParaVotacaoEnum.ABLE_TO_VOTE);
+        return SituacaoCPFParaVotacaoEnum.ABLE_TO_VOTE.equals(status);
     }
 }
