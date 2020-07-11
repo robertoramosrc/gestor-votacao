@@ -1,6 +1,5 @@
 package br.com.coopera.gestorvotacao.impl.business.pauta;
 
-import br.com.coopera.gestorvotacao.impl.exceptions.RegistroNaoExisteException;
 import br.com.coopera.gestorvotacao.infra.repository.pauta.PautaDao;
 import br.com.coopera.gestorvotacao.infra.repository.pauta.PautaEntity;
 import org.springframework.stereotype.Repository;

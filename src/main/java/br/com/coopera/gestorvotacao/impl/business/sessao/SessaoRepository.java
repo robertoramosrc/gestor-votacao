@@ -1,6 +1,5 @@
 package br.com.coopera.gestorvotacao.impl.business.sessao;
 
-import br.com.coopera.gestorvotacao.impl.business.pauta.Pauta;
 import br.com.coopera.gestorvotacao.impl.exceptions.RegistroNaoExisteException;
 import br.com.coopera.gestorvotacao.infra.repository.sessao.SessaoDao;
 import br.com.coopera.gestorvotacao.infra.repository.sessao.SessaoEntity;

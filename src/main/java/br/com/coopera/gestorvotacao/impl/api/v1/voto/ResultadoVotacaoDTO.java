@@ -2,9 +2,6 @@ package br.com.coopera.gestorvotacao.impl.api.v1.voto;
 
 import br.com.coopera.gestorvotacao.impl.business.sessao.SituacaoSessaoEnum;
 import br.com.coopera.gestorvotacao.impl.business.voto.ResultadoVotacaoEnum;
-import br.com.coopera.gestorvotacao.impl.business.voto.Voto;
-
-import java.util.List;
 
 public class ResultadoVotacaoDTO {
     private String pauta;
